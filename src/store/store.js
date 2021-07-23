@@ -1,6 +1,7 @@
 import {applyMiddleware, combineReducers, createStore, compose} from 'redux'
-import { loginReducer } from '../reducers/loginReducer'
+import {loginReducer} from '../reducers/loginReducer'
 import {registroReducer} from '../reducers/registroReducer'
+import {peliculasReducer} from '../reducers/peliculasReducer'
 import  thunk from 'redux-thunk'
 
 
@@ -9,7 +10,8 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 
 const reducers = combineReducers({
     login: loginReducer,
-    Registrar: registroReducer
+    Registrar: registroReducer,
+    RegistrarP: peliculasReducer
 
 })
 //para acciones asincronas 

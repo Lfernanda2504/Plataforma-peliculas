@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
 import Login from '../components/Login'
+import Peliculas from '../components/Peliculas'
 import Registro from '../components/Registro'
 import {
     BrowserRouter,
@@ -11,6 +12,7 @@ import {
 
 
 
+
 const Routers = () => {
     return (
         <BrowserRouter>
@@ -18,6 +20,7 @@ const Routers = () => {
             <Switch>
                 <Route exact path="/Login" component={Login} />
                 <Route exact path="/Registro" component={Registro} />
+                <Route exact path="/Peliculas" component={Peliculas} />
             </Switch>
         </BrowserRouter>
 

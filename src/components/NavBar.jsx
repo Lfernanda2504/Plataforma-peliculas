@@ -1,7 +1,6 @@
-import React from "react"; 
-import { Container, Image, Nav, Navbar } from "react-bootstrap";
-
-
+import React from "react";
+import { Container, Image, Nav, Navbar, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -9,14 +8,24 @@ const NavBar = () => {
       <Navbar bg="dark" variant="dark">
         <Container fluid>
           <Navbar.Brand href="#home">
-          <Image src="https://i.ibb.co/17THYrN/logo-peliculas.png" alt="logo" className="logo"/>
+            <Image
+              src="https://i.ibb.co/17THYrN/logo-peliculas.png"
+              alt="logo"
+              className="logo"
+            />
           </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Todas</Nav.Link>
-            <Nav.Link href="#features">Mas valoradas</Nav.Link>
-            <Nav.Link href="#pricing">Menos valoradas</Nav.Link>
+            <Nav.Link to="/Peliculas">Todas</Nav.Link>
+            <Nav.Link>Mas valoradas</Nav.Link>
+            <Nav.Link>Menos valoradas</Nav.Link>
           </Nav>
-        </Container>
+          <Link className="nav-link" to="/Registro">
+            <Button className="btn-primary m-3">Crear cuenta</Button>
+          </Link>
+          <Link className="nav-link" to="/Login">
+            <Button className="btn-primary"> Acceder</Button>
+          </Link>
+          </Container>
       </Navbar>
       <br />
     </div>
