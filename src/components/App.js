@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { useForm } from "../hook/useForm";
 import {useDispatch} from 'react-redux'
-import {login} from '../actions/action'
+import {loginGoogle, login} from '../actions/action'
 
 const App = () => {
 
@@ -21,6 +21,12 @@ const App = () => {
     e.preventDefault();
    dispatch(login(email, password));
   }
+
+  const handleGoogleLogin=()=>{
+   dispatch(loginGoogle());
+   console.log(dispatch(loginGoogle()))
+  }
+
 
   return (
     <Container>
@@ -45,6 +51,15 @@ const App = () => {
         <Button variant="primary" type="submit">
           Enviar
         </Button>
+        <Container className="auth__social-networks">
+          <Container
+            className="google-btn"
+          >
+            <Container className="google-icon-wrapper">
+              <img className="google-btn" onClick={handleGoogleLogin} src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
+            </Container>
+          </Container>
+        </Container>
       </Form>
     </Container>
   );
