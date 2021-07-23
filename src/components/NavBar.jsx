@@ -1,5 +1,5 @@
 import React from "react"; 
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Image, Nav, Navbar } from "react-bootstrap";
 
 
 
@@ -8,11 +8,13 @@ const NavBar = () => {
     <div>
       <Navbar bg="dark" variant="dark">
         <Container fluid>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Navbar.Brand href="#home">
+          <Image src="https://i.ibb.co/17THYrN/logo-peliculas.png" alt="logo" className="logo"/>
+          </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="#home">Todas</Nav.Link>
+            <Nav.Link href="#features">Mas valoradas</Nav.Link>
+            <Nav.Link href="#pricing">Menos valoradas</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

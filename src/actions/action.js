@@ -25,3 +25,36 @@ export const login = (id, displayName)=>{
     }
 }
 
+export const registro = (id, nombre, apellido, telefono)=>{
+    return{
+        type: types.Registrar,
+        payload:{
+            id,
+            nombre,
+            apellido,
+            telefono,
+        }
+    }
+}
+
+export const registroUsuario=( name, email, pass)=>{
+    return (dispatch)=>{
+        firebase.auth().createUserWithEmailAndPassword(email, pass)
+        .then(async({user})=>{
+            console.log(user);
+
+            await user.updateProfile({displayName: name})
+
+            dispatch(
+                registroUsuario(user.uid, user.displayName)
+            )
+            })
+            .catch(e =>{
+                console.log(e)
+            })
+
+        }
+        
+
+    }
+

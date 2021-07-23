@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
-import App from '../components/App'
+import Login from '../components/Login'
+import Registro from '../components/Registro'
 import {
     BrowserRouter,
     Switch,
@@ -15,7 +16,8 @@ const Routers = () => {
         <BrowserRouter>
             <NavBar />
             <Switch>
-                <Route exact path="/" component={App} />
+                <Route exact path="/Login" component={Login} />
+                <Route exact path="/Registro" component={Registro} />
             </Switch>
         </BrowserRouter>
 

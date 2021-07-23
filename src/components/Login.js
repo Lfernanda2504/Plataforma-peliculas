@@ -4,7 +4,7 @@ import { useForm } from "../hook/useForm";
 import {useDispatch} from 'react-redux'
 import {loginGoogle, login} from '../actions/action'
 
-const App = () => {
+const Login = () => {
 
   const  dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ const App = () => {
   return (
     <Container>
       <Form onSubmit={handleLogin}>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
+      <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Correo</Form.Label>
             <Form.Control
               type="email"
@@ -49,7 +49,7 @@ const App = () => {
           onChange={handleInputChange} />
         </Form.Group>
         <Button variant="primary" type="submit">
-          Enviar
+          Iniciar sesion
         </Button>
         <Container className="auth__social-networks">
           <Container
@@ -65,4 +65,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Login;
