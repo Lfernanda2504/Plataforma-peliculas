@@ -57,4 +57,15 @@ export const registroUsuario=( email, password, nombre, apellido)=>{
         
 
     }
-
+    export const registrarPeliculas = ( nombrePelicula, year , genre, director)=>{
+        return{
+            type: types.RegistrarP,
+            payload:{
+                nombrePelicula,
+                year,
+                genre,
+                director
+            }
+        }
+    }
+    
