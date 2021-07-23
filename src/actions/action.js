@@ -37,16 +37,16 @@ export const registro = (id, nombre, apellido, telefono)=>{
     }
 }
 
-export const registroUsuario=( name, email, pass)=>{
+export const registroUsuario=( email, password, nombre, apellido)=>{
     return (dispatch)=>{
-        firebase.auth().createUserWithEmailAndPassword(email, pass)
+        firebase.auth().createUserWithEmailAndPassword(email, password,  nombre, apellido,)
         .then(async({user})=>{
             console.log(user);
 
-            await user.updateProfile({displayName: name})
+            await user.updateProfile({displayName: nombre})
 
             dispatch(
-                registroUsuario(user.uid, user.displayName)
+                registro(user.uid, user.displayName)
             )
             })
             .catch(e =>{

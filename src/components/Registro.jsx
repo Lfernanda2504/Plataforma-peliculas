@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useForm } from "../hook/useForm";
 import { useDispatch } from "react-redux";
-import { registroUsuario } from "../actions/action";
+import { registro } from "../actions/action";
 
 const Registro = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const Registro = () => {
   const handleRegistro = (e) => {
     e.preventDefault();
     console.log(nombre, apellido, email, password);
-    dispatch(registroUsuario(nombre, apellido, email, password));
+    dispatch(registro(nombre, apellido, email, password));
     reset();
   };
   return (
