@@ -13,7 +13,7 @@ import {
 
 
 
-const Routers = () => {
+const AppRouters = () => {
     return (
         <BrowserRouter>
             <NavBar />
@@ -27,4 +27,4 @@ const Routers = () => {
     )
 }
 
-export default Routers;
+export default AppRouters;

@@ -4,13 +4,13 @@ import 'firebase/auth';
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBuNqlxer4XnXu-iC_Z6CXwYCXXOAhzJy0",
-    authDomain: "react-redux-c6659.firebaseapp.com",
-    projectId: "react-redux-c6659",
-    storageBucket: "react-redux-c6659.appspot.com",
-    messagingSenderId: "812726486760",
-    appId: "1:812726486760:web:91ad178ebef7c2c4e76b5d"
-};
+  apiKey: "AIzaSyBvCTmxsfXyM9sBw9UtsfDcJM8OLcXga4c",
+  authDomain: "platafoma-peliculas.firebaseapp.com",
+  projectId: "platafoma-peliculas",
+  storageBucket: "platafoma-peliculas.appspot.com",
+  messagingSenderId: "1074095941461",
+  appId: "1:1074095941461:web:27d413441ff554cb7bb1dc"
+  };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 

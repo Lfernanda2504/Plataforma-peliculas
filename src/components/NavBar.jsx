@@ -15,7 +15,7 @@ const NavBar = () => {
             />
           </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link to="/Peliculas">Todas</Nav.Link>
+            <Link className="nav-link" to="/Peliculas">Todas </Link>
             <Nav.Link>Mas valoradas</Nav.Link>
             <Nav.Link>Menos valoradas</Nav.Link>
           </Nav>

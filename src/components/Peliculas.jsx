@@ -1,17 +1,56 @@
 import React from "react";
+import { useForm } from "../hook/useForm";
+import { useDispatch } from "react-redux";
 import { Form, Container, Button } from "react-bootstrap";
+import { registrarPelicula} from "../actions/action";
+
 
 const Peliculas = () => {
+    const dispatch = useDispatch();
+
+  const [formValues, handleInputChange, reset] = useForm(
+    { 
+      id:'',
+      nombrePelicula: '',
+      year: '',
+      genre: '',
+      director: ''
+  });
+
+
+  const {id, nombrePelicula, year, genre, director } = formValues;
+
+  const handleRegistroPeliculas = (e) => {
+    e.preventDefault();
+    console.log(id, nombrePelicula, year, genre, director);
+    dispatch(registrarPelicula(id,nombrePelicula, year, genre, director));
+    reset();
+  };
+
   return (
     <div>
       <Container>
-        <Form>
+        <Form onSubmit={handleRegistroPeliculas}>
+        <Form.Group className="mb-3" controlId="formBasicNombre">
+            <Form.Label>Identificación</Form.Label>
+            <Form.Control
+              type="text"
+              name="id"
+              placeholder="Enter identificacion"
+              value={id}
+              onChange={handleInputChange}
+              
+            />
+                      
+          </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicNombre">
             <Form.Label>Nombre Pelicula</Form.Label>
             <Form.Control
               type="text"
               name="nombrePelicula"
               placeholder="Enter name"
+              value={nombrePelicula}
+              onChange={handleInputChange}
               
             />
                       
@@ -23,6 +62,8 @@ const Peliculas = () => {
               type="number"
               name="year"
               placeholder="Enter year"
+              value={year}
+              onChange={handleInputChange}
              
             />
                       
@@ -34,6 +75,8 @@ const Peliculas = () => {
               type="text"
               name="genre"
               placeholder="Enter genre "
+              value={genre}
+              onChange={handleInputChange}
               
             />
           </Form.Group>
@@ -43,6 +86,8 @@ const Peliculas = () => {
               type="text"
               name="director"
               placeholder="Enter Director"
+              value={director}
+              onChange={handleInputChange}
               
             />
           </Form.Group>
