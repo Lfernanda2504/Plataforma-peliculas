@@ -11,7 +11,7 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 const reducers = combineReducers({
     login: loginReducer,
     Registrar: registroReducer,
-    RegistrarP: peliculasReducer
+    peliculas: peliculasReducer
 
 })
 //para acciones asincronas 

@@ -82,3 +82,24 @@ export const registrarPelicula = (id, nombrePelicula, year, genre, director) => 
      dispatch(registroPelicula(id, nombrePelicula, year, genre, director))
   }
 }
+export const listar = (peliculas)=>{
+  return {
+    type: types.Listar,
+    payload: peliculas
+  }
+}
+export const listarPeliculas = ()=>{
+  return async(dispatch)=>{
+    const data = await db.collection(`/Peliculas`).get();
+    const peliculas = [];
+    data.forEach(peli =>{
+      peliculas.push({ 
+        ...peli.data()
+      })
+    })
+    
+    console.log("Estas son las peliculas que resibo", peliculas);
+    dispatch(listar(peliculas));
+  }
+
+}

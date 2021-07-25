@@ -11,6 +11,11 @@ export const peliculasReducer = (state =[], action)=>{
                genre: action.payload.genre,
                director: action.payload.director  
             }
+        case types.Listar:
+            return{
+                ...state,
+                peliculas: [...action.payload]
+            }
     
         default:
             return state;

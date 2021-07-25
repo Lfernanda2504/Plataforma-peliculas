@@ -2,11 +2,17 @@ import React from "react";
 import { useForm } from "../hook/useForm";
 import { useDispatch } from "react-redux";
 import { Form, Container, Button } from "react-bootstrap";
-import { registrarPelicula} from "../actions/action";
+import { registrarPelicula, listarPeliculas} from "../actions/action";
+import { useEffect } from "react";
+import ListarPeliculas from './ListarPeliculas';
 
 
 const Peliculas = () => {
     const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(listarPeliculas());
+    }, [])
 
   const [formValues, handleInputChange, reset] = useForm(
     { 
@@ -95,6 +101,7 @@ const Peliculas = () => {
             Guardar
           </Button>
         </Form>
+        <ListarPeliculas />
       </Container>
     </div>
   );
