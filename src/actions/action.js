@@ -23,29 +23,41 @@ export const login = (id, displayName) => {
   };
 };
 
-export const registro = (id, nombre, apellido, telefono) => {
+export const loginEmailPassword = (email, password)=>{
+  return (dispatch)=>
+  {
+    firebase.auth().signInWithEmailAndPassword(email, password).then(({user})=>{
+      dispatch(
+        login(user.uid, user.displayName)
+      )
+    })
+    .catch(e=>{
+      console.log(e)
+    })
+  }
+}
+
+export const registro = ( nombre,apellido, email, password) => {
   return {
     type: types.Registrar,
     payload: {
-      id,
       nombre,
       apellido,
-      telefono
+      email, 
+      password
     },
   };
 };
 
-export const registroUsuario = (email, password, nombre, apellido) => {
+export const registroUsuario = (email, password, nombre) => {
   return (dispatch) => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password, nombre, apellido)
+    firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(async ({ user }) => {
         console.log(user);
 
         await user.updateProfile({ displayName: nombre });
 
-        dispatch(registro(user.uid, user.displayName));
+        dispatch(login(user.uid, user.displayName));
       })
       .catch((e) => {
         console.log(e);

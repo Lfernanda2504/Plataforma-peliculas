@@ -1,14 +1,13 @@
 import React from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { useForm } from "../hook/useForm";
+import { useForm } from "../../hook/useForm";
 import {useDispatch} from 'react-redux'
-import {loginGoogle, login} from '../actions/action'
+import { Link } from "react-router-dom";
+import { login, loginGoogle } from "../../actions/action";
 
 const Login = () => {
 
   const  dispatch = useDispatch();
-
-
   const [formValues, handleInputChange] = useForm({
     email: "",
     password: "",
@@ -60,6 +59,7 @@ const Login = () => {
             </Container>
           </Container>
         </Container>
+          <Link className="link" to="auth/Registro"> Crear cuenta</Link>
       </Form>
     </Container>
   );

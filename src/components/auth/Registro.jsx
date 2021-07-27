@@ -1,25 +1,25 @@
 import React from "react";
 import { Form, Button, Container } from "react-bootstrap";
-import { useForm } from "../hook/useForm";
+import { useForm } from "../../hook/useForm";
 import { useDispatch } from "react-redux";
-import { registro } from "../actions/action";
+import { registroUsuario} from "../../actions/action";
+import { Link } from "react-router-dom";
 
 const Registro = () => {
   const dispatch = useDispatch();
 
   const [formValues, handleInputChange, reset] = useForm({
     nombre: "",
-    apellido: "",
     email: "",
     password: ""
   });
 
-  const { nombre, apellido, email, password } = formValues;
+  const { nombre, email, password} = formValues;
 
   const handleRegistro = (e) => {
     e.preventDefault();
-    console.log(nombre, apellido, email, password);
-    dispatch(registro(nombre, apellido, email, password));
+    console.log(email, password, nombre);
+    dispatch(registroUsuario(email, password, nombre));
     reset();
   };
   return (
@@ -35,17 +35,7 @@ const Registro = () => {
               value={nombre}
               onChange={handleInputChange}
             />          
-          </Form.Group>        
-          <Form.Group className="mb-3" controlId="formBasicApellido">
-            <Form.Label>Apellido</Form.Label>                    
-            <Form.Control
-              type="text"
-              name="apellido"
-              placeholder="Enter lastname"
-              value={apellido}
-              onChange={handleInputChange}
-            />          
-          </Form.Group>     
+          </Form.Group>             
           <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Correo</Form.Label>
             <Form.Control
@@ -69,6 +59,7 @@ const Registro = () => {
           <Button variant="primary" type="submit">
             Guardar
           </Button>
+          <Link to="/auth/login"  className="link"> Estoy registrado</Link>
         </Form>
       </Container>
     </div>
