@@ -3,6 +3,13 @@ export const types ={
     logout: 'logout',
     Registrar: 'Registrar',
     RegistrarP: 'RegistrarP',
-    Listar: 'Listar'
+    Listar: 'Listar',
+    
+    uiSetError: '[UI] set Error',
+    uiRemoveError: '[UI] Remove Error',
+
+    uiStartLoading: '[UI] Start loading',
+    uiFinishLoading: '[UI] Finish loading'
+
 
 }

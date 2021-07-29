@@ -7,32 +7,30 @@ import { AuthRouter } from './AuthRouter';
 import {AuthPrivate} from './AuthPrivate'
 import { login } from '../actions/action';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+import { Spinner } from 'react-bootstrap';
 
 
 export const AppRouter = () => {
-    const dispatch = useDispatch();
     const [checking, setChecking] = useState(true);
     const [isLooggedIn, setIsLooggedIn] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(async (user) => {
-
             if (user?.uid) {
-                dispatch(login(user.uid, user.displayName));
+                dispatch(login(user.uid, user.displayName))
                 setIsLooggedIn(true)
-
             } else {
                 setIsLooggedIn(false)
             }
-            
-        setChecking(false)
+            setChecking(false)
         })
-
     }, [dispatch, setChecking])
 
     if (checking) {
         return (
-            <h1>Wait...</h1>
+
+            <Spinner animation="border" variant="dark" />, <h1>Cargando...</h1>
         )
     }
 

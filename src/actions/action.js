@@ -1,5 +1,6 @@
 import { types } from "../type/types";
 import { db, firebase, google } from "../firebase/firabase-config";
+import {startLoading, finishLoading} from "../actions/uiError";
 
 export const loginGoogle = () => {
   return (dispatch) => {
@@ -27,15 +28,27 @@ export const loginEmailPassword = (email, password)=>{
   return (dispatch)=>
   {
     firebase.auth().signInWithEmailAndPassword(email, password).then(({user})=>{
-      dispatch(
-        login(user.uid, user.displayName)
-      )
+
+      dispatch(startLoading)
+      dispatch(login(user.uid, user.displayName));
+    
     })
-    .catch(e=>{
+    .catch(e =>{
+      dispatch(finishLoading)
       console.log(e)
     })
   }
 }
+export const startLogout = () => {
+  return async (dispatch) => {
+      await firebase.auth().signOut();
+      dispatch(logout());
+  }
+}
+export const logout = () => ({
+  type: types.logout
+})
+
 
 export const registro = ( nombre,apellido, email, password) => {
   return {

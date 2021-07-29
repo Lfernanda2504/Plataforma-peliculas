@@ -1,0 +1,34 @@
+.btn-search{
+    background: #FED941;
+    border-radius: 0px 4px 4px 0px;
+}
+.search-input{
+    /* Auto Layout */
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 11px 12px;
+
+position: static;
+width: 206.6px;
+height: 44px;
+left: 0px;
+top: 0px;
+
+/* white */
+
+background: #FFFFFE;
+/* primary */
+
+border: 1px solid #FED941;
+box-sizing: border-box;
+border-radius: 8px 0px 0px 8px;
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 1;
+margin: 0px 0px;
+}
