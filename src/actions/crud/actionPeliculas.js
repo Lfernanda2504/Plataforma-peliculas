@@ -1,82 +1,84 @@
-import { types } from "../type/types";
-import { db, firebase} from "../firebase/firabase-config";
+import { types } from "../../type/types";
+import {fileUpload} from '../../helpers/fileUpload'
+import { db} from "../../firebase/firabase-config";
+import { loadCard} from '../../helpers/loadCard'
 
+export const peliculasAction=(peliculas)=>{
+  return async(dispatch, getSate)=>{
+    const uid = getSate().login.id
+    
+    const nuevaPelicula = {
+      nombrePelicula: '',
+      description: '',
+      year: '',
+      genre: '',
+      director:'',
+      url: ''
+    }
+    const docRef = await db.collection(`${uid}/pelicula/data`).add(nuevaPelicula);
+    console.log("enviando datos a la bd",docRef)
+  }
+  
+}
 
-export const registro = ( nombre,apellido, email, password) => {
-    return {
-      type: types.Registrar,
-      payload: {
-        nombre,
-        apellido,
-        email, 
-        password
-      },
-    };
-  };
-  
-  export const registroUsuario = (email, password, nombre) => {
-    return (dispatch) => {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(async ({ user }) => {
-          console.log(user);
-  
-          await user.updateProfile({ displayName: nombre });
-  
-          dispatch(login(user.uid, user.displayName));
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
-  };
-  export const registroPelicula = (id, nombrePelicula, year, genre, director) => {
-    return {
-      type: types.RegistrarP,
-      payload: {
-        id,
-        nombrePelicula,
-        year,
-        genre,
-        director
+export const NuevaCard = (pelicula, file) => {
+   
+  return async(dispatch, getSate)=> {
+       let fileUlr=[]
+       const {uid} = getSate().login.id
+
+       //para validar 
+       try 
+       {
+               fileUlr= await fileUpload(file)
+           
+       } catch (error) {
+           fileUlr=[]
+           
+       }
+       const nuevaPelicula = {
+        nombrePelicula: pelicula.nombrePelicula,
+        description: pelicula.description,
+        year: pelicula.year,
+        genre: pelicula.genre,
+        director: pelicula.director,
+        url: fileUlr
       }
-    }
+
+      const docRef= await db.collection(`${uid}/Pelicula/data`).add(nuevaPelicula)
+      dispatch(agregarNuevaPelicula(uid, nuevaPelicula))
+      console.log('estos son los datos de ', nuevaPelicula)
+   }
+     
   }
-  
-  export const registrarPelicula = (id, nombrePelicula, year, genre, director) => {
-    return async (dispatch) => {
-  
-        const nuevasPeliculas = {
-          id: id,
-          nombrePelicula: nombrePelicula,
-          year: year,
-          genre: genre,
-          director: director
-        }
-  
-        await db.collection(`/Peliculas`).add(nuevasPeliculas);
-  
-        console.log(id,nombrePelicula, year, genre, director);
-       dispatch(registroPelicula(id, nombrePelicula, year, genre, director))
-    }
-  }
-  export const listar = (peliculas)=>{
-    return {
-      type: types.Listar,
+//FUNCIÓN SINCRÓNICA 
+
+export const agregarNuevaPelicula = ( id, pelicula ) => ({
+   type: types.PeliculaActive,
+   payload: {
+       id, ...pelicula
+   }
+})
+export const setPelicula =(peliculas)=>{
+    return{
+      type: types.PeliculaLoad,
       payload: peliculas
     }
-  }
-  export const listarPeliculas = ()=>{
-    return async(dispatch)=>{
-      const data = await db.collection(`/Peliculas`).get();
-      const peliculas = [];
-      data.forEach(peli =>{
-        peliculas.push({ 
-          ...peli.data()
-        })
-      })
-      
-      console.log("Estas son las peliculas que resibo", peliculas);
-      dispatch(listar(peliculas));
-    }
-  
-  }
+
+}
+
+//función Listar 
+//export const ListarPelicula = (uid) => {
+   //return async (dispatch) => {
+       //const cardPelicula = await loadCards(uid)
+       //dispatch(setPelicula(cardPelicula))
+ //  }
+//}
+
+//export const setPelicula = (peliculas) => {
+  // return {
+       //type: types.cardLoad,
+      // payload: peliculas
+  // }
+//}
+

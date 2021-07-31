@@ -1,17 +1,15 @@
-import { db } from '../firebase/firebase-config'
+import { db } from '../firebase/firabase-config'
 
 export const loadCards = async (uid) => {
     //extraer data de BD
-    const cardStore = await db.collection(`${uid}/Card/data`).get()
-    const cardsList = [];
+    const peliculaStore = await db.collection(`${uid}/Pelicula/data`).get()
+    const peliculas = [];
+
+    peliculaStore.forEach(hijo=>{
+        console.log(hijo.data())
+    })
 
     //recorremos el array 
-    cardStore.forEach(hijo=>{
-        cardsList.push({
-        id:hijo.id,
-        ...hijo.data()
-       })
-    })
-   
-    return loadCards
+    console.log(peliculaStore)
+    return peliculas
 }

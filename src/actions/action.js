@@ -1,5 +1,5 @@
 import { types } from "../type/types";
-import { db, firebase, google } from "../firebase/firabase-config";
+import { firebase, google } from "../firebase/firabase-config";
 import {startLoading, finishLoading} from "../actions/uiError";
 
 export const loginGoogle = () => {
@@ -77,54 +77,5 @@ export const registroUsuario = (email, password, nombre) => {
       });
   };
 };
-export const registroPelicula = (id, nombrePelicula, year, genre, director) => {
-  return {
-    type: types.RegistrarP,
-    payload: {
-      id,
-      nombrePelicula,
-      year,
-      genre,
-      director
-    }
-  }
-}
 
-export const registrarPelicula = (id, nombrePelicula, year, genre, director) => {
-  return async (dispatch) => {
 
-      const nuevasPeliculas = {
-        id: id,
-        nombrePelicula: nombrePelicula,
-        year: year,
-        genre: genre,
-        director: director
-      }
-
-      await db.collection(`/Peliculas`).add(nuevasPeliculas);
-
-      console.log(id,nombrePelicula, year, genre, director);
-     dispatch(registroPelicula(id, nombrePelicula, year, genre, director))
-  }
-}
-export const listar = (peliculas)=>{
-  return {
-    type: types.Listar,
-    payload: peliculas
-  }
-}
-export const listarPeliculas = ()=>{
-  return async(dispatch)=>{
-    const data = await db.collection(`/Peliculas`).get();
-    const peliculas = [];
-    data.forEach(peli =>{
-      peliculas.push({ 
-        ...peli.data()
-      })
-    })
-    
-    console.log("Estas son las peliculas que resibo", peliculas);
-    dispatch(listar(peliculas));
-  }
-
-}

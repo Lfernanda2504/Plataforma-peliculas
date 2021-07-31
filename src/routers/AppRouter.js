@@ -8,6 +8,8 @@ import {AuthPrivate} from './AuthPrivate'
 import { login } from '../actions/action';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
+import { loadCards } from '../helpers/loadCard';
+import { setPelicula } from '../actions/crud/actionPeliculas';
 
 
 export const AppRouter = () => {
@@ -20,6 +22,9 @@ export const AppRouter = () => {
             if (user?.uid) {
                 dispatch(login(user.uid, user.displayName))
                 setIsLooggedIn(true)
+             
+                const peliculas = await loadCards(user.uid)
+                dispatch(setPelicula(peliculas))
             } else {
                 setIsLooggedIn(false)
             }

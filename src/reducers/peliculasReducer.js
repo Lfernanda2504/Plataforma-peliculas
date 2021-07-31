@@ -1,17 +1,19 @@
 import { types } from '../type/types';
+const initialState = {
+    peliculas:[],
+    active: null,
+}
 
-export const peliculasReducer = (state =[], action)=>{
+export const peliculasReducer = (state = initialState, action)=>{
    
     switch (action.type) {
-        case types.RegistrarP:
+        case types.PeliculaActive:
             return {
-                id: action.payload.id,
-               nombrePelicula: action.payload.nombrePelicula,
-               year: action.payload.year,
-               genre: action.payload.genre,
-               director: action.payload.director  
+                ...state,
+                peliculas:  [action.payload, state.peliculas]
             }
-        case types.Listar:
+        case types.PeliculaLoad:
+            console.log(action.payload)
             return{
                 ...state,
                 peliculas: [...action.payload]

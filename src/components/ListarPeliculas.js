@@ -6,7 +6,7 @@ const ListarPeliculas = () => {
 
     //consulta el estado al store
     const {peliculas} = useSelector(store => store.peliculas);
-    console.log("vengo de listar", peliculas);
+    console.log(peliculas);
 
     return (
         <Container fluid>
